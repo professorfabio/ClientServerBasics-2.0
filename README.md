@@ -1,4 +1,4 @@
-# ClientServerBasics
+# ClientServerBasics (2.0)
 Starter code for the basic client-server assignment
 
 
