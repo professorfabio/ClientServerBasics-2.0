@@ -8,6 +8,6 @@ Tarefa individual.
 
 Incluir um Readme descritivo do sistema implementado.
 
-Incluir, no Readme o link para o vídeo demonstrativo da execução do programa no AWS.
+Incluir, no Readme, o link para o vídeo demonstrativo da execução do programa no AWS.
 
 Todo o código demais artefatos, incluindo o (link para o) vídeo demonstrativo, devem ser entregues via GitHub Classroom. 
