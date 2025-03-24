@@ -13,8 +13,8 @@ while True:                # forever
   print(msg)
   data = pickle.loads(msg)
   print(data)
-  if data[0] == "SUM":
-    data = data[1] + data[2]
+  if data["OP"] == "sum":
+    data = data["V1"] + data["V2"]
     msg = pickle.dumps(data)
     packet = str.encode(msg)
     conn.send(packet)
