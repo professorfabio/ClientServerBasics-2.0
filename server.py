@@ -21,7 +21,7 @@ while True:                # forever
   else:
     status = "NOK"
     res = 1
-  data = ["STATUS":status, "RES":res]
+  data = {"STATUS":status, "RES":res}
   msg = pickle.dumps(data)
   conn.send(msg)
   
