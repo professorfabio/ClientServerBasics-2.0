@@ -5,7 +5,7 @@ from random import *
 from constCS import * #-
 
 def execute(data, num):
-  print ("Thread: " + num)
+  print ("Thread: ", num)
   if data["OP"] == "sum":
     res = data["V1"] + data["V2"]
     status = "OK"
