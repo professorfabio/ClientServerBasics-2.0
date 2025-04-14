@@ -4,21 +4,6 @@ import pickle
 from random import *
 from constCS import * #-
 
-s = socket(AF_INET, SOCK_STREAM) 
-s.bind((HOST, PORT))  #-
-s.listen(1)           #-
-(conn, addr) = s.accept()  # returns new socket and addr. client 
-while True:                # forever
-  msg = conn.recv(1024)    # receive data from client
-  if not msg: break        # stop if client stopped 
-  print(msg)
-  data = pickle.loads(msg)
-  print(data)
-  num = randint(1,100)
-  t = Thread (target=execute, args=(data,num))
-  t.start()
-conn.close()               # close the connection
-
 def execute(data, num):
   print ("Thread: " + num)
   if data["OP"] == "sum":
@@ -34,3 +19,18 @@ def execute(data, num):
   msg = pickle.dumps(data)
   conn.send(msg)
   return
+
+s = socket(AF_INET, SOCK_STREAM) 
+s.bind((HOST, PORT))  #-
+s.listen(1)           #-
+(conn, addr) = s.accept()  # returns new socket and addr. client 
+while True:                # forever
+  msg = conn.recv(1024)    # receive data from client
+  if not msg: break        # stop if client stopped 
+  print(msg)
+  data = pickle.loads(msg)
+  print(data)
+  num = randint(1,100)
+  t = Thread (target=execute, args=(data,num))
+  t.start()
+conn.close()               # close the connection
