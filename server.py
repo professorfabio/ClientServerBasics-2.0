@@ -32,6 +32,9 @@ while True:                # forever
     data = pickle.loads(msg)
     print(data)
     if data["OP"] == "fim":
+      data = {"STATUS":"fim","RES":0}
+      msg = pickle.dumps(data)
+      conn.send(msg)
       break
     else:
       num = randint(1,100)
