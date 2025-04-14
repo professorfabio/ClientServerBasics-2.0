@@ -23,8 +23,9 @@ def execute(data, num):
 s = socket(AF_INET, SOCK_STREAM) 
 s.bind((HOST, PORT))  #-
 s.listen(1)           #-
-(conn, addr) = s.accept()  # returns new socket and addr. client 
+
 while True:                # forever
+  (conn, addr) = s.accept()  # returns new socket and addr. client 
   msg = conn.recv(1024)    # receive data from client
   if msg: 
     print(msg)
