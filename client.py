@@ -10,7 +10,7 @@ v2 = int(input("Enter 2nd operand: "))
 data = {"OP":op, "V1":v1, "V2":v2}
 msg = pickle.dumps(data)
 
-for (i in range(100)):
+for i in range(100):
   s.send(msg)  # send data packet
   msg = s.recv(1024)     # receive the response
   data = pickle.loads(msg)
