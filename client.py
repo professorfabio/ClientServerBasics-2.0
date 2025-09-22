@@ -8,26 +8,17 @@ v2 = int(input("Enter 2nd operand: "))
 data = {"OP":op, "V1":v1, "V2":v2}
 msg = pickle.dumps(data)
 
-for i in range(100):
-  s = socket(AF_INET, SOCK_STREAM)
-  s.connect((HOST, PORT)) # connect to server (block until accepted)
-  s.send(msg)  # send data packet
-  msg = s.recv(1024)     # receive the response
-  data = pickle.loads(msg)
-  if data["STATUS"] == "OK":
-    print ("Result: ", data["RES"])            # print the result
-  elif data["STATUS"] == "NOK" and data["RES"] == 1:
-    print ("Operation does not exist.")
-  elif data["STATUS"] == "FIM":
-    print ("Server terminated.")
-  else:
-    print ("Unexpected result.")
-  s.close()
-  
-# Last message to close the server
-data["OP"] = "fim"
-msg = pickle.dumps(data)
-s2 = socket(AF_INET, SOCK_STREAM)
-s2.connect((HOST, PORT)) # connect to server (block until accepted)
-s2.send(msg)
-s2.close()               # close the connection
+s = socket(AF_INET, SOCK_STREAM)
+s.connect((HOST, PORT)) # connect to server (block until accepted)
+s.send(msg)  # send data packet
+msg = s.recv(1024)     # receive the response
+data = pickle.loads(msg)
+if data["STATUS"] == "OK":
+  print ("Result: ", data["RES"])            # print the result
+elif data["STATUS"] == "NOK" and data["RES"] == 1:
+  print ("Operation does not exist.")
+elif data["STATUS"] == "FIM":
+  print ("Server terminated.")
+else:
+  print ("Unexpected result.")
+s.close()
