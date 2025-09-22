@@ -19,5 +19,5 @@ elif data["STATUS"] == "NOK" and data["RES"] == 1:
 elif data["STATUS"] == "FIM":
   print ("Server terminated.")
 else:
-  print ("Resultado inesperado.")
+  print ("Unexpected result.")
 s.close()               # close the connection
