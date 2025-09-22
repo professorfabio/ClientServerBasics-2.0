@@ -40,4 +40,4 @@ while True:                # forever
       num = randint(1,100)
       t = Thread (target=execute, args=(data,num))
       t.start()
-conn.close()               # close the connection
+  conn.close()               # close the connection
