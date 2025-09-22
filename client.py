@@ -9,15 +9,20 @@ v1 = int(input("Enter 1st operand: "))
 v2 = int(input("Enter 2nd operand: "))
 data = {"OP":op, "V1":v1, "V2":v2}
 msg = pickle.dumps(data)
-s.send(msg)  # send data packet
-msg = s.recv(1024)     # receive the response
-data = pickle.loads(msg)
-if data["STATUS"] == "OK":
-  print ("Result: ", data["RES"])            # print the result
-elif data["STATUS"] == "NOK" and data["RES"] == 1:
-  print ("Operation does not exist.")
-elif data["STATUS"] == "FIM":
-  print ("Server terminated.")
-else:
-  print ("Unexpected result.")
+
+for (i in range(100)):
+  s.send(msg)  # send data packet
+  msg = s.recv(1024)     # receive the response
+  data = pickle.loads(msg)
+  if data["STATUS"] == "OK":
+    print ("Result: ", data["RES"])            # print the result
+  elif data["STATUS"] == "NOK" and data["RES"] == 1:
+    print ("Operation does not exist.")
+  elif data["STATUS"] == "FIM":
+    print ("Server terminated.")
+  else:
+    print ("Unexpected result.")
+data["OP"] = "fim"
+msg = pickle.dumps(data)
+s.send(msg)
 s.close()               # close the connection
