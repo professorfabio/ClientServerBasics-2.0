@@ -2,7 +2,6 @@ from socket  import *
 from constCS import * #-
 import pickle
 
-s = socket(AF_INET, SOCK_STREAM)
 op = input("Operation to invoke: ")
 v1 = int(input("Enter 1st operand: "))
 v2 = int(input("Enter 2nd operand: "))
@@ -10,6 +9,7 @@ data = {"OP":op, "V1":v1, "V2":v2}
 msg = pickle.dumps(data)
 
 for i in range(100):
+  s = socket(AF_INET, SOCK_STREAM)
   s.connect((HOST, PORT)) # connect to server (block until accepted)
   s.send(msg)  # send data packet
   msg = s.recv(1024)     # receive the response
@@ -27,6 +27,7 @@ for i in range(100):
 # Last message to close the server
 data["OP"] = "fim"
 msg = pickle.dumps(data)
-s.connect((HOST, PORT)) # connect to server (block until accepted)
-s.send(msg)
-s.close()               # close the connection
+s2 = socket(AF_INET, SOCK_STREAM)
+s2.connect((HOST, PORT)) # connect to server (block until accepted)
+s2.send(msg)
+s2.close()               # close the connection
