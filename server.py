@@ -4,7 +4,7 @@ import pickle
 from random import *
 from constCS import * #-
 
-def execute(data, num, conn):
+def execute(data, num):
   print ("Thread: ", num)
   if data["OP"] == "sum":
     res = data["V1"] + data["V2"]
@@ -38,6 +38,6 @@ while True:                # forever
       break
     else:
       num = randint(1,100)
-      t = Thread (target=execute, args=(data,num, conn))
+      t = Thread (target=execute, args=(data,num))
       t.start()
   conn.close()               # close the connection
